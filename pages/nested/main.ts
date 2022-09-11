@@ -1,32 +1,38 @@
-import './style.css'
+import '/styles/style.css'
 import ForceGraph3D from "3d-force-graph";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div id="3d-graph">
-  <div>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-  </div>
 `
 
-const V = 100;
-const links = [...Array(V).keys()]
-        .filter(id => id)
-        .map(id => ({
-          source: id,
-          target: Math.round(Math.random() * (id-1)),
-          value: Math.round(Math.random() * 8) + 2
-        }))
+type Link = {
+  source: number;
+  target: number;
+  value?: number;
+};
 
-// console.log(links)
+const V = 300;
+const load = (Math.round(Math.random() * 2) + 1) / V;
+const links: Link[] = [];
+
+for (let i = 0; i < V; i++) {
+    for (let j = 0; j < V; j++) {
+        if(Math.random() < load) {
+            links.push({
+                source: i,
+                target: j,
+                value: Math.round(Math.random() * 10)
+            })
+        }
+    }
+}
+console.log(links)
 const gData = {
   nodes: [...Array(V).keys()].map((i) => ({ id: i, selected: 1 })),
   links
 };
 let selectedNodes = new Set();
-const dDiv = document.getElementById('3d-graph')!;
-const Graph = ForceGraph3D()(dDiv)
+const Graph = ForceGraph3D()(document.getElementById("3d-graph")!)
   .graphData(gData)
   .linkDirectionalArrowLength(3.5)
   .linkDirectionalArrowRelPos(1)
@@ -38,12 +44,8 @@ const Graph = ForceGraph3D()(dDiv)
     Graph.nodeColor(Graph.nodeColor()); // update color of selected nodes
   })
   
+  
 // distance beteween link reperesent the cost to go
-Graph.d3Force('link')?.distance((link:any) => link.value);
+Graph.d3Force('link')?.distance((link : any )=> link.value);
 
-// fit the graph in the div
-// Graph.zoomToFit(400)
-
-// Graph.backgroundColor('');
-Graph.linkWidth(3);
-Graph.linkDirectionalArrowLength(9.5);
+// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
