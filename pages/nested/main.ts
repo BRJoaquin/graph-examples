@@ -44,6 +44,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph")!)
   .enableNavigationControls(false)
   .showNavInfo(false)
   .cameraPosition({ z: distance })
+  .backgroundColor("#181818")
   
 // distance beteween link reperesent the cost to go
 // Graph.d3Force('link')?.distance((link : any )=> link.value);
