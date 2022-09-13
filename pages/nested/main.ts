@@ -26,7 +26,6 @@ for (let i = 0; i < V; i++) {
         }
     }
 }
-console.log(links)
 const gData = {
   nodes: [...Array(V).keys()].map((i) => ({ id: i, selected: 1 })),
   links
