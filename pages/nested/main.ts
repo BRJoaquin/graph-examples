@@ -30,7 +30,7 @@ const gData = {
   nodes: [...Array(V).keys()].map((i) => ({ id: i, selected: 1 })),
   links
 };
-console.log(gData));
+console.log(gData);
 
 
 const distance = 400;
