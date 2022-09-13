@@ -3,10 +3,6 @@ import ForceGraph3D from "3d-force-graph";
 import SpriteText from 'three-spritetext';
 import * as dat from 'dat.gui';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div id="graph">
-`
-
 type Link = {
   source: number;
   target: number;
@@ -35,7 +31,7 @@ const gData = {
 
 const distance = 200;
 const Graph = ForceGraph3D()
-  (document.getElementById('graph')!)
+  (document.getElementById('graph-types')!)
   .graphData(gData)
   .nodeLabel('id')
   .nodeAutoColorBy('group')
@@ -44,7 +40,7 @@ const Graph = ForceGraph3D()
   .backgroundColor("#121212")
 
 // Spread nodes a little wider
-Graph.d3Force('charge').strength(-120);
+Graph.d3Force('charge')?.strength(-120);
 
 
 const Settings = function() {

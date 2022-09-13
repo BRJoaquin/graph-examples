@@ -1,9 +1,6 @@
 import '/styles/style.css'
 import ForceGraph3D from "3d-force-graph";
 
-// document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-//   <div id="3d-graph">
-// `
 
 type Link = {
   source: number;
@@ -35,7 +32,7 @@ console.log(gData);
 
 const distance = 400;
 
-const Graph = ForceGraph3D()(document.getElementById("3d-graph")!)
+const Graph = ForceGraph3D()(document.getElementById("3d-graph-nested")!)
   .graphData(gData)
   .linkCurvature(0)
   .linkWidth(1.5)
