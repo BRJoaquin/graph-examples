@@ -12,7 +12,7 @@ type Link = {
 };
 
 const V = 30;
-const load = 0.07;
+const load = 0.06;
 const links: Link[] = [];
 
 for (let i = 0; i < V; i++) {
@@ -36,8 +36,6 @@ const distance = 400;
 
 const Graph = ForceGraph3D()(document.getElementById("3d-graph")!)
   .graphData(gData)
-  .linkDirectionalArrowLength(3.5)
-  .linkDirectionalArrowRelPos(1)
   .linkCurvature(0)
   .linkWidth(1.5)
   .enableNodeDrag(false)
