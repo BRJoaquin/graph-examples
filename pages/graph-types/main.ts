@@ -38,7 +38,7 @@ const Graph = ForceGraph3D()
   .linkThreeObjectExtend(true)
   .cameraPosition({ z: distance })
   .backgroundColor("#121212")
-
+  
 // Spread nodes a little wider
 Graph.d3Force('charge')?.strength(-120);
 
@@ -66,6 +66,7 @@ gui.add(settings, 'weighted', true).onChange((value: boolean) => {
       [c]: start[c] + (end[c] - start[c]) / 2 // calc middle point
     })));
     // Position sprite
-    Object.assign(sprite.position, middlePos);
+    Object.assign(sprite?.position, middlePos);
   });
+
 });
