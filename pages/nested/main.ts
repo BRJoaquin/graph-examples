@@ -1,9 +1,9 @@
 import '/styles/style.css'
 import ForceGraph3D from "3d-force-graph";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div id="3d-graph">
-`
+// document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+//   <div id="3d-graph">
+// `
 
 type Link = {
   source: number;
