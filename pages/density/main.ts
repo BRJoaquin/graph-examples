@@ -29,11 +29,12 @@ function generateGraph(V: number, load: number) {
   };
 }
 
-const distance = 200;
+const distance = 300;
 const Graph = ForceGraph3D()
   (document.getElementById('graph-density')!)
-  .graphData(generateGraph(10, 0.05))
+  .graphData(generateGraph(20, 0.20))
   .nodeLabel('id')
+  .linkWidth(0.5)
   .nodeAutoColorBy('group')
   .linkThreeObjectExtend(true)
   .cameraPosition({ z: distance })
@@ -42,10 +43,9 @@ const Graph = ForceGraph3D()
 // Spread nodes a little wider
 Graph.d3Force('charge')?.strength(-120);
 
-
 const Settings = function() {
-  this.V = 10;
-  this.load = 5;
+  this.V = 20;
+  this.load = 20;
 };
 const settings = new Settings();
 const gui : any = new dat.GUI();
