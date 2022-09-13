@@ -11,8 +11,8 @@ type Link = {
   value?: number;
 };
 
-const V = 300;
-const load = (Math.round(Math.random() * 2) + 1) / V;
+const V = 30;
+const load = 0.07;
 const links: Link[] = [];
 
 for (let i = 0; i < V; i++) {
@@ -31,21 +31,28 @@ const gData = {
   nodes: [...Array(V).keys()].map((i) => ({ id: i, selected: 1 })),
   links
 };
-let selectedNodes = new Set();
+
+const distance = 400;
+
 const Graph = ForceGraph3D()(document.getElementById("3d-graph")!)
   .graphData(gData)
   .linkDirectionalArrowLength(3.5)
   .linkDirectionalArrowRelPos(1)
   .linkCurvature(0)
-  .nodeColor(node=> selectedNodes.has(node) ? 'red' : 'yellow')
+  .linkWidth(1.5)
   .enableNodeDrag(false)
-  .onNodeClick((node) => {
-    selectedNodes.has(node) ? selectedNodes.delete(node) : selectedNodes.add(node)
-    Graph.nodeColor(Graph.nodeColor()); // update color of selected nodes
-  })
-  
+  .enableNavigationControls(false)
+  .showNavInfo(false)
+  .cameraPosition({ z: distance })
   
 // distance beteween link reperesent the cost to go
-Graph.d3Force('link')?.distance((link : any )=> link.value);
+// Graph.d3Force('link')?.distance((link : any )=> link.value);
 
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+let angle = 0;
+setInterval(() => {
+  Graph.cameraPosition({
+    x: distance * Math.sin(angle),
+    z: distance * Math.cos(angle)
+  });
+  angle += Math.PI / 1000;
+}, 10);
